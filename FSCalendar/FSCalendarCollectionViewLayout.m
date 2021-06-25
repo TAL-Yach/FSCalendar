@@ -65,7 +65,7 @@
         self.sectionRowCounts = NULL;
         
         self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        self.sectionInsets = UIEdgeInsetsMake(5, 0, 5, 0);
+        self.sectionInsets = UIEdgeInsetsMake(0, 0, 0, 0);
         
         self.itemAttributes = NSMutableDictionary.dictionary;
         self.headerAttributes = NSMutableDictionary.dictionary;
@@ -167,7 +167,7 @@
     // Calculate item heights and tops
     free(self.heights);
     self.heights = ({
-        NSInteger rowCount = self.calendar.transitionCoordinator.representingScope == FSCalendarScopeWeek ? 1 : 6;
+        NSInteger rowCount = self.calendar.transitionCoordinator.representingScope == FSCalendarScopeWeek ? 1 : (self.calendar.placeholderType == FSCalendarPlaceholderTypeFillHeadTail ? 5 : 6);
         size_t rowSize = sizeof(CGFloat)*rowCount;
         CGFloat *heights = malloc(rowSize);
         if (!self.calendar.floatingMode) {
